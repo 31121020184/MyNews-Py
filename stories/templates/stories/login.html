@@ -1,0 +1,39 @@
+{% extends "stories/base.html"%}
+{% block body %}
+{% load static %}
+<div class="container-fluid mb-4"></div>
+    <div class="container">
+        <div class="row">
+            <div>
+                <div class="text-center fh5co_heading py-2">Login</div>
+            </div>
+                <div class="col-12 col-md-6 align-self-center">
+                    <form class="row" id="fh5co_contact_form" action="{% url 'stories:login'%}" method="POST">
+                        {% csrf_token %}
+                        <div class="col-6 py-3 text-center">
+                            <table class="table">
+                               <tr>
+                                <td></td>
+                                <td><input type="text" name="username" class="fh5co_contact_text_box" placeholder="Enter Username"/></td>
+                               </tr>
+                               <tr>
+                                <td></td>
+                                <td><input type="text" name="password" class="fh5co_contact_text_box" placeholder="Enter password"/></td>
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td><input type="submit" class="btn contact_btn" value="Login"></td>
+                               </tr>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+        </div>
+        <div class="row">
+            <h6>{% if login_result%} {{login_result}} {% endif %}</h6>
+            <h6>{% if logout_result%} {{logout_result}} {% endif %}</h6>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

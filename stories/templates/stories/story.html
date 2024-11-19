@@ -1,0 +1,49 @@
+
+{% extends "stories/base.html"%}
+{% block body %}
+{% load static %}
+<div id="fh5co-single-content" class="container pb-4 pt-4 paddding">  
+    <div class="container paddding">
+        <div class="row mx-0"> 
+            <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">       
+        <h2>{{story.name}}</h2> 
+        <span>{{story.author}}</span>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div id="fh5co-single-content" class="container pb-4 pt-4 paddding">
+    <div class="container paddding">
+        <div class="row mx-0">
+            <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
+                {{story.info|safe}}
+                
+            </div>       
+        </div>
+    </div>
+</div>
+<div class="container-fluid pb-4 pt-5">
+    <div class="container animate-box">
+        <div>
+            <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">New Stories</div>
+        </div>
+        <div class="owl-carousel owl-theme" id="slider2">
+            {% if stories %}
+            {% for story in stories %}
+            <div class="item px-2">
+                <div class="fh5co_hover_news_img">
+                    <div class="fh5co_news_img"><img src='{{story.image.url}}' alt="{{story.name}}"/></div>
+                    <div>
+                        <a href="{% url 'stories:story' story.pk%}" class="d-block fh5co_small_post_heading"><span class="">{{story.name}}</span></a>
+                        <div class="c_g"><i class="fa fa-clock-o"></i>{{story.public_day}}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

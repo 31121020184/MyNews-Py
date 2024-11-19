@@ -1,0 +1,35 @@
+{% extends "stories/base.html"%}
+{% block body %}
+{% load static %}
+<div class="container-fluid mb-4"></div>
+    <div class="container">
+        <div class="row">
+            <div>
+                <div class="text-center fh5co_heading py-2">Register</div>
+            </div>
+                <div class="col-12 col-md-6 align-self-center">
+                    <form class="row" id="fh5co_contact_form" action="{% url 'stories:register'%}" method="POST">
+                        {% csrf_token %}
+                        <div class="col-6 py-3 text-center">
+                            <table class="table">
+                               <tr>
+                                <td></td>
+                                <td>{{user_form.as_table}}</td>
+                               </tr>
+                               <tr>
+                                <td></td>
+                                <td>{{profile_form.as_table}}</td>
+                               </tr>
+                               <td><input type="submit" class="btn contact_btn" value="Register"></td>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+        </div>
+        <div class="row">
+            <h6 style ="color:red;">{% if registered %} Chúc mừng bạn đã đăng ký tài khoản thành công!!! {% endif %}</h6>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

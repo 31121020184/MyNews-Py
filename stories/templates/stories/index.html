@@ -1,0 +1,156 @@
+{% extends "stories/base.html"%}
+{% block body %}
+{% load static %}
+<div class="container-fluid paddding mb-5">
+    <div class="row mx-0">
+        <div class="col-md-6 col-12 paddding animate-box" data-animate-effect="fadeIn">
+            <div class="fh5co_suceefh5co_height"><img src='{{newest.image.url}}' alt="img"/>
+                <div class="fh5co_suceefh5co_height_position_absolute"></div>
+                <div class="fh5co_suceefh5co_height_position_absolute_font">
+                    <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{newest.public_day}}
+                    </a></div>
+                    <div class=""><a href="{% url 'stories:story' newest.pk%}" class="fh5co_good_font"> {{newest.name}}</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            {% if next_4_newest %} 
+            <div class="row">
+                {% for story in next_4_newest %}
+                <div class="col-md-6 col-6 paddding animate-box" data-animate-effect="fadeIn">
+                    <div class="fh5co_suceefh5co_height_2"><img src='{{story.image.url}}' alt="img"/>
+                        <div class="fh5co_suceefh5co_height_position_absolute"></div>
+                        <div class="fh5co_suceefh5co_height_position_absolute_font_2">
+                            <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{story.public_day}}</a></div>
+                            <div class=""><a href="{% url 'stories:story' newest.pk%}" class="fh5co_good_font_2"> {{story.name}} <br>{{story.author}} </a></div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid pt-3">
+    <div class="container animate-box" data-animate-effect="fadeIn">
+        <div>
+            <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Young Children</div>
+        </div>
+        {% if young %}
+        <div class="owl-carousel owl-theme js" id="slider1">
+            {% for story in young %}
+            <div class="item px-2">
+                <div class="fh5co_latest_trading_img_position_relative">
+                    <div class="fh5co_latest_trading_img"><img src='{{story.image.url}}' alt="{{story.name}}"
+                                                           class="fh5co_img_special_relative"/></div>
+                    <div class="fh5co_latest_trading_img_position_absolute"></div>
+                    <div class="fh5co_latest_trading_img_position_absolute_1">
+                        <a href="{% url 'stories:story' story.pk%}" class="text-white"> {{story.name}} </a>
+                        <div class="fh5co_latest_trading_date_and_name_color">J{{story.public_day}}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            
+        </div>
+    </div>
+</div>
+<div class="container-fluid pb-4 pt-5">
+    <div class="container animate-box">
+        <div>
+            <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Older Children</div>
+        </div>
+        {% if older %}
+        <div class="owl-carousel owl-theme" id="slider2">
+            {% for story in older %}
+            <div class="item px-2">
+                <div class="fh5co_hover_news_img">
+                    <div class="fh5co_news_img"><img src='{{story.image.url}}' alt="{{story.name}}"/></div>
+                    <div>
+                        <a href="{% url 'stories:story' story.pk%}" class="d-block fh5co_small_post_heading"><span class="">{{story.name}}</span></a>
+                        <div class="c_g"><i class="fa fa-clock-o"></i>{{story.public_day}}0</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% comment %} <div class="item px-2">
+                <div class="fh5co_hover_news_img">
+                    <div class="fh5co_news_img"><img src='{% static "stories/images/joe-gardner-75333.jpg"%}' alt=""/></div>
+                    <div>
+                        <a href="{% url 'stories:story' newest.pk%}" class="d-block fh5co_small_post_heading"><span class="">The top 10 best computer speakers in the market</span></a>
+                        <div class="c_g"><i class="fa fa-clock-o"></i> Oct 16,2017</div>
+                    </div>
+                </div>
+            </div>
+            <div class="item px-2">
+                <div class="fh5co_hover_news_img">
+                    <div class="fh5co_news_img"><img src='{% static "stories/images/ryan-moreno-98837.jpg"%}' alt=""/></div>
+                    <div>
+                        <a href="{% url 'stories:story' newest.pk%}" class="d-block fh5co_small_post_heading"><span class="">The top 10 best computer speakers in the market</span></a>
+                        <div class="c_g"><i class="fa fa-clock-o"></i> Oct 16,2017</div>
+                    </div>
+                </div>
+            </div>
+            <div class="item px-2">
+                <div class="fh5co_hover_news_img">
+                    <div class="fh5co_news_img"><img src='{% static "stories/images/seth-doyle-133175.jpg"%}' alt=""/></div>
+                    <div>
+                        <a href="{% url 'stories:story' newest.pk%}" class="d-block fh5co_small_post_heading"><span class="">The top 10 best computer speakers in the market</span></a>
+                        <div class="c_g"><i class="fa fa-clock-o"></i> Oct 16,2017</div>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+        </div>
+    </div>
+</div>
+<div class="container-fluid fh5co_video_news_bg pb-4">
+    <div class="container animate-box" data-animate-effect="fadeIn">
+		<div>
+            <div class="fh5co_heading fh5co_heading_border_bottom pt-5 pb-2 mb-4  text-white">Video Stories</div>
+        </div>
+        <div>
+            {% if young %}
+            <div class="owl-carousel owl-theme" id="slider3">
+                {% for story in young %}
+                <div class="item px-2">
+                    <div class="fh5co_hover_news_img">
+                        <div class="fh5co_hover_news_img_video_tag_position_relative">
+                            <div class="fh5co_news_img">
+                                <iframe id="video" width="100%" height="200"
+                                        src="https://www.youtube.com/embed/lCdtSo4IV7M?rel=0&amp;showinfo=0"
+                                        frameborder="0" allowfullscreen></iframe>
+                            </div>
+                            <div class="fh5co_hover_news_img_video_tag_position_absolute fh5co_hide">
+                                <img src='{{story.image.url}}' alt=""/>
+                            </div>
+                            <div class="fh5co_hover_news_img_video_tag_position_absolute_1 fh5co_hide" id="play-video">
+                                <div class="fh5co_hover_news_img_video_tag_position_absolute_1_play_button_1">
+                                    <div class="fh5co_hover_news_img_video_tag_position_absolute_1_play_button">
+                                        <span><i class="fa fa-play"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-2">
+                            <a href="{% url 'stories:story' newest.pk%}" class="d-block fh5co_small_post_heading fh5co_small_post_heading_1">
+                            <span class="">{{story.name}}</span></a>
+                            <div class="c_g"><i class="fa fa-clock-o"></i>{{story.public_day}}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="d-flex justify-content-center">
+        <h6>You have visits this page {{visits}} time</h6>
+    </div>
+</div>
+
+{% endblock %}

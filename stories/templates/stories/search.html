@@ -1,0 +1,37 @@
+{% extends "stories/base.html"%}
+{% block body %}
+{% load static %}
+<div class="container-fluid fh5co_fh5co_bg_contcat"></div>
+    <div class="container paddding">
+        <div class="row mx-0">
+            <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
+                <div>
+                    <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Stories</div>
+                    {% if numbers %}
+                    <h5>Found {{numbers}} stories</h5>
+                    {% else %}
+                    <h5>Found 0 stories</h5>
+                    {% endif %}
+                </div>
+                {% if stories %}
+                {% for story in stories %}
+                <div class="row pb-4">
+                    <div class="col-md-5">
+                        <div class="fh5co_hover_news_img">
+                            <div class="fh5co_news_img"><img src='{{story.image.url}}' alt="{{story.name}}"/></div>
+                            <div></div>
+                        </div>
+                    </div>
+					<div class="col-md-7">
+                        <a href="{% url 'stories:story' story.pk%}" class="fh5co_magna py-2">{{story.name}}</a> <a href="#" class="fh5co_mini_time py-3">{{story.public_day}}</a>
+                        <div class="fh5co_consectetur"> {{story.content|truncatewords:30}}
+                        </div>                        
+                    </div>  
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
